@@ -5,14 +5,15 @@ import path from 'path'
 
 const VideoPlayer = () => {
     const {state} = useLocation();
-    // const src = `../${state.src}`
+    const src = `${state.src}`
     // console.log(src)
   return (
     <div>
+      {src}
     <ReactPlayer 
-    url='Videos\test.webm'
-    width='80%'
-    height='40%'
+    url='../../public/Videos/test.webm'
+    width='120%'
+    height='120%'
     controls={true}
     />
     </div>

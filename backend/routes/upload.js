@@ -27,7 +27,7 @@ const upload = multer({});
 // Write the video buffer to a file
 
 const write = async (videoBuffer,filename) =>{
-    const fileSavePath = `../python/static/${filename}`
+    const fileSavePath = `../frontend/public/Videos/${filename}`
     fs.writeFile(fileSavePath, videoBuffer, 'binary', (err) => {
     if (err) {
         console.error('Error writing video file:', err);
@@ -47,7 +47,6 @@ const RunPython = (filePath) =>{
         //Here is where the output goes
     
         // console.log('stdout: ' + data);
-    
         dataFromPython =data.toString().split('\n')
         scriptOutput+=data;
     });
@@ -70,26 +69,25 @@ const RunPython = (filePath) =>{
 
 router.post('/upload',upload.single('video'), async (req, res) => {
     // console.log(Object.keys(req))
-    console.log("file info")
-    console.log(req.file)
+    // console.log("file info")
+    // console.log(req.file)
     if (!req.file) {
         return res.status(400).send('No video file uploaded.');
     }
     const buffer = Buffer.from(req.file.buffer,base64)
-    console.log(buffer)
-    console.log(typeof buffer)
-    const videoBuffer = Buffer.from(buffer,base64);
+    // console.log(buffer)
+    // console.log(typeof buffer)
     const filename = req.file.originalname;
     const filePath = await write(buffer,filename);
     console.log(filePath)
-    // Do not save the file instead use the buffer and transfer to python backend
+    // Do not save the file instead use the buffer and transfer to python backend? can't
     // Access the uploaded video file from req.file
     // const videoBuffer = req.file.buffer;
     // console.log(req.file, req.body)
-    // let OutputPath = await RunPython(filePath) 
-    // OutputPath.pop()
-    // console.log(OutputPath)
-    return res.send(filePath)
+    let OutputPath = await RunPython(filePath) 
+    OutputPath.pop()
+    console.log(OutputPath[OutputPath.length-1])
+    return res.send(OutputPath[OutputPath.length-1])
 });
 
 module.exports = router

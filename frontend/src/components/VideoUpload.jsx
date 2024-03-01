@@ -1,7 +1,7 @@
 import React, { useState , useEffect,useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
-import VideoPlayer from './VideoPlayer'
 import axios from 'axios'
+import '../../public/css/video.css'
 
 
 
@@ -56,14 +56,19 @@ export default function Video() {
 };
 
 
-
+  const videoExtensions = ['mp4', 'mpeg', 'webm'];
   return (
     <div>
-        {supported?'Supported':"please upload supported type"}
-        <form onSubmit={handleSubmit}>
-          <input type='file' name='video' ref={fileInput} onChange={hasVideoExtension}/>
-          <input type='submit' placeholder='Upload' />
-        </form>
+      <div className='container'>
+        <h1>Action Recognition With LRCN</h1>
+      </div>
+      <div className='video-container'>
+      <p font>{supported?'Uploaded Video is Supported':`Types supported : ${videoExtensions}`}</p>
+      <form onSubmit={handleSubmit}>
+        <input type='file' name='video' ref={fileInput} onChange={hasVideoExtension}/>
+        <input type='submit' placeholder='Upload' className='upload-button'/>
+      </form>
+    </div>
     </div>
   )
 }
