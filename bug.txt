@@ -1,2 +1,0 @@
-Cannot play Video file written by CV2.VideoWriter(fourcc = '*mp4v')
-replace *'mp4v' -> *'VP90' || *'h264'
