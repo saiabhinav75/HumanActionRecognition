@@ -1,3 +1,5 @@
 backend/node_modules
-python
+python/LRCN.model
+python/LRCN(10).model
 Files
+./bugs.txt

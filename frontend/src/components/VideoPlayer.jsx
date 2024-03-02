@@ -6,12 +6,12 @@ import path from 'path'
 const VideoPlayer = () => {
     const {state} = useLocation();
     const src = `${state.src}`
-    // console.log(src)
+    console.log(src)
   return (
     <div>
-      {src}
+      {/* If Video Doesn't play disable StrictMode */}
     <ReactPlayer 
-    url='../../public/Videos/test.webm'
+    url={`Videos/${src}`}
     width='120%'
     height='120%'
     controls={true}
@@ -19,6 +19,19 @@ const VideoPlayer = () => {
     </div>
   );
 };
+
+// import React from 'react';
+// import { Player, ControlBar } from 'video-react';
+// // import 'video-react/dist/video-react.css';
+
+// export default function MyVideoPlayer()  {
+//   return (
+//     <Player src='Videos/test-output.webm'>
+//       <ControlBar autoHide={false} className="my-class" />
+//     </Player>
+//   );
+// };
+
 
 export default VideoPlayer;
 

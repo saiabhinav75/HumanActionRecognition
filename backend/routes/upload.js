@@ -6,14 +6,6 @@ const base64  =require('base-64')
 const {spawn} = require('child_process')
 const path = require('path')
 
-const storagee = multer.diskStorage({
-    destination:function(req,file,cb){
-        return cb(null,"../python/static/")
-    },
-    filename:function (req,file,cb){
-        return cb(null,`${file.originalname}`)
-    }
-})
 const upload = multer({});
 
 // router.post('/upload',(req,res)=>{
@@ -68,9 +60,6 @@ const RunPython = (filePath) =>{
 }
 
 router.post('/upload',upload.single('video'), async (req, res) => {
-    // console.log(Object.keys(req))
-    // console.log("file info")
-    // console.log(req.file)
     if (!req.file) {
         return res.status(400).send('No video file uploaded.');
     }
@@ -84,10 +73,12 @@ router.post('/upload',upload.single('video'), async (req, res) => {
     // Access the uploaded video file from req.file
     // const videoBuffer = req.file.buffer;
     // console.log(req.file, req.body)
-    let OutputPath = await RunPython(filePath) 
-    OutputPath.pop()
-    console.log(OutputPath[OutputPath.length-1])
-    return res.send(OutputPath[OutputPath.length-1])
+    // let OutputPath = await RunPython(filePath) 
+    // OutputPath.pop()
+    // console.log(OutputPath[OutputPath.length-1])
+    const response = await fetch(`http://127.0.0.1:5000/detect/${filename}`)
+    // console.log(response)
+    return res.send(filename.split('.')[0]+'-output.mp4')
 });
 
 module.exports = router
