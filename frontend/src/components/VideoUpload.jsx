@@ -1,7 +1,7 @@
 import React, { useState , useEffect,useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
-import '../../public/css/video.css'
+import '../../public/css/VideoUpload.css'
 
 
 
@@ -58,7 +58,7 @@ export default function Video() {
 
   const videoExtensions = ['mp4', 'mpeg', 'webm'];
   return (
-    <div>
+    <div className='wrapper'>
       <div className='container'>
         <h1>Action Recognition With LRCN</h1>
       </div>

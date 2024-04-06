@@ -15,10 +15,10 @@ SEQUENCE_LENGTH = 20
 
 DATASET_DIR="UCF50"
 
-CLASSES_LIST=['TaiChi', 'Diving', 'BaseballPitch', 'SalsaSpin', 'Biking', 'Nunchucks', 'HorseRace', 'JumpRope', 'Skiing', 'CleanAndJerk']
+CLASSES_LIST1=['TaiChi', 'Diving', 'BaseballPitch', 'SalsaSpin', 'Biking', 'Nunchucks', 'HorseRace', 'JumpRope', 'Skiing', 'CleanAndJerk']
+CLASSES_LIST=["WalkingWithDog", "TaiChi", "Swing", "HorseRace"]
 
-
-Model_Name = "LRCN(10).model"
+Model_Name = "LRCN.model"
 LRCN_model=tf.keras.models.load_model(Model_Name)
 print("Model loaded successfully")
 
