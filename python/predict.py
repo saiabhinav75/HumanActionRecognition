@@ -19,9 +19,9 @@ SEQUENCE_LENGTH = 20
 
 DATASET_DIR="UCF50"
 
-CLASSES_LIST=['TaiChi', 'Diving', 'BaseballPitch', 'SalsaSpin', 'Biking', 'Nunchucks', 'HorseRace', 'JumpRope', 'Skiing', 'CleanAndJerk']
+# CLASS_LIST=['TaiChi', 'Diving', 'BaseballPitch', 'SalsaSpin', 'Biking', 'Nunchucks', 'HorseRace', 'JumpRope', 'Skiing', 'CleanAndJerk']
 
-
+CLASS_LIST= ['BaseballPitch', 'SalsaSpin', 'Biking', 'Nunchucks', 'HorseRace', 'JumpRope', 'Skiing', 'CleanAndJerk', 'BenchPress', 'RopeClimbing']
 
 
 
@@ -73,7 +73,7 @@ def predict_on_video(video_file_path,output_file_path,SEQUENCE_LENGTH):
       predicted_label = np.argmax(predicted_labels_probabilites)
 
 
-      predicted_class_name = CLASSES_LIST[predicted_label]
+      predicted_class_name = CLASS_LIST[predicted_label]
       print(predicted_class_name)
     cv2.putText(frame,predicted_class_name,(10,30),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
 
@@ -93,8 +93,7 @@ if __name__=='__main__':
 
   out_root_dir = '../frontend/public/Videos/'
   filename=input_path.split('\\')[-1]
-  print(filename)
-  ['TaiChi', 'Diving', 'BaseballPitch', 'SalsaSpin', 'Biking', 'Nunchucks', 'HorseRace', 'JumpRope', 'Skiing', 'CleanAndJerk']
+
 
   test_dir="test_videos"
   output="output"

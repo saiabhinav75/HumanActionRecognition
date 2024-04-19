@@ -21,7 +21,7 @@ export default function Video() {
   }
   useEffect(()=>{
     const Validate = () =>{
-      const videoExtensions = ['mp4', 'mpeg', 'webm'];
+      const videoExtensions = ['mp4', 'mpeg', 'webm','gif'];
       const file = filename
       const extension = file.split('.');
       setSupported(videoExtensions.includes(extension.pop()));
@@ -56,7 +56,7 @@ export default function Video() {
 };
 
 
-  const videoExtensions = ['mp4', 'mpeg', 'webm'];
+  const videoExtensions = ['mp4', 'mpeg', 'webm','gif'];
   return (
     <div className='wrapper'>
       <div className='container'>

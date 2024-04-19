@@ -15,10 +15,14 @@ SEQUENCE_LENGTH = 20
 
 DATASET_DIR="UCF50"
 
-CLASSES_LIST1=['TaiChi', 'Diving', 'BaseballPitch', 'SalsaSpin', 'Biking', 'Nunchucks', 'HorseRace', 'JumpRope', 'Skiing', 'CleanAndJerk']
-CLASSES_LIST=["WalkingWithDog", "TaiChi", "Swing", "HorseRace"]
+# CLASSES_LIST1=['TaiChi', 'Diving', 'BaseballPitch', 'SalsaSpin', 'Biking', 'Nunchucks', 'HorseRace', 'JumpRope', 'Skiing', 'CleanAndJerk']
+# CLASSES_LIST=["WalkingWithDog", "TaiChi", "Swing", "HorseRace"]
+# CLASS_LIST= ['BaseballPitch', 'SalsaSpin', 'Biking', 'Nunchucks', 'HorseRace', 'JumpRope', 'Skiing', 'CleanAndJerk', 'BenchPress', 'RopeClimbing']
+CLASS_LIST = ['PlayingPiano', 'BenchPress', 'Kayaking', 'MilitaryParade', 'HorseRace', 'CleanAndJerk', 'BaseballPitch']
 
-Model_Name = "LRCN.model"
+
+
+Model_Name = "LRCN_model_20240416_000018.Loss.0.24996277689933777.Accuracy.0.9300912022590637"
 LRCN_model=tf.keras.models.load_model(Model_Name)
 print("Model loaded successfully")
 
@@ -66,7 +70,7 @@ def predict_on_video(filename):
     if len(frames_queue) == SEQUENCE_LENGTH:
         predicted_labels_probabilites= LRCN_model.predict(np.expand_dims(frames_queue,axis=0))[0]
         predicted_label = np.argmax(predicted_labels_probabilites)
-        predicted_class_name = CLASSES_LIST[predicted_label]
+        predicted_class_name = CLASS_LIST[predicted_label]
         print(predicted_class_name)
         cv2.putText(frame,predicted_class_name,(10,30),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
         video_writer.write(frame)
